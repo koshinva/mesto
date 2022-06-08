@@ -1,0 +1,22 @@
+.edit-form__close-icon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  transform: translate(100%, -100%);
+  width: 32px;
+  height: 32px;
+  transition: opacity 0.3s;
+}
+.edit-form__close-icon:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+@media screen and (max-width: 750px) {
+  .edit-form__close-icon {
+    width: 20px;
+    height: 20px;
+    top: -16px;
+    right: 0;
+    transform: translateY(-100%);
+  }
+}
