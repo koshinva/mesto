@@ -1,6 +1,15 @@
 .profile__info {
-    flex: 0 1 336px;
+    width: 336px;
     text-align: left;
     padding-left: 30px;
     position: relative;
+}
+
+@media screen and (max-width: 750px) {
+    .profile__info {
+        padding-left: 0;
+        text-align: center;
+        width: 282px;
+        margin-bottom: 36px;
+    }
 }
