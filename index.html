@@ -33,11 +33,7 @@
                 alt="кнопка редактирования"
               />
             </div>
-            <img
-              class="profile__button-add"
-              src="./images/profile/btn_add.svg"
-              alt="кнопка добавить"
-            />
+            <div class="profile__button-add"></div>
           </section>
           <section class="place">
             <div class="place__element">
@@ -50,7 +46,7 @@
                 <h2 class="place__name-city">Карачаевск</h2>
                 <img
                   class="place__like"
-                  src="./images/place/лайк.svg"
+                  src="./images/place/like/like-noactive.svg"
                   alt="Символ лайк"
                 />
               </div>
@@ -65,7 +61,7 @@
                 <h2 class="place__name-city">Гора Эльбрус</h2>
                 <img
                   class="place__like"
-                  src="./images/place/лайк.svg"
+                  src="./images/place/like/like-noactive.svg"
                   alt="Символ лайк"
                 />
               </div>
@@ -80,7 +76,7 @@
                 <h2 class="place__name-city">Домбай</h2>
                 <img
                   class="place__like"
-                  src="./images/place/лайк.svg"
+                  src="./images/place/like/like-noactive.svg"
                   alt="Символ лайк"
                 />
               </div>
@@ -95,7 +91,7 @@
                 <h2 class="place__name-city">Гора Эльбрус</h2>
                 <img
                   class="place__like"
-                  src="./images/place/лайк.svg"
+                  src="./images/place/like/like-noactive.svg"
                   alt="Символ лайк"
                 />
               </div>
@@ -110,7 +106,7 @@
                 <h2 class="place__name-city">Домбай</h2>
                 <img
                   class="place__like"
-                  src="./images/place/лайк.svg"
+                  src="./images/place/like/like-noactive.svg"
                   alt="Символ лайк"
                 />
               </div>
@@ -125,7 +121,7 @@
                 <h2 class="place__name-city">Карачаево-Черкесия</h2>
                 <img
                   class="place__like"
-                  src="./images/place/лайк.svg"
+                  src="./images/place/like/like-noactive.svg"
                   alt="Символ лайк"
                 />
               </div>
@@ -137,17 +133,31 @@
         </footer>
       </div>
     </div>
-    <div class="edit-form">
-        <section class="edit-form__body">
-          <h2 class="edit-form__title">Редактировать профиль</h2>
-          <form class="edit-form__form" action="#" method="get">
-            <input class="edit-form__input" type="text" name="name" />
-            <input class="edit-form__input" type="text" name="profession" />
-            <button class="edit-form__button" type="submit">Сохранить</button>
-          </form>
-          <img class="edit-form__close-icon" src="./images/edit-form/Close Icon.svg" alt="Закрывающая иконка">
-        </section>
-      </div>
+    <div class="edit-form edit-form_hidden">
+      <section class="edit-form__body">
+        <h2 class="edit-form__title">Редактировать профиль</h2>
+        <form class="edit-form__form" action="#" method="get">
+          <input
+            class="edit-form__input"
+            type="text"
+            name="name"
+            autocomplete="off"
+          />
+          <input
+            class="edit-form__input"
+            type="text"
+            name="profession"
+            autocomplete="off"
+          />
+          <button class="edit-form__button" type="submit">Сохранить</button>
+        </form>
+        <img
+          class="edit-form__close-icon"
+          src="./images/edit-form/Close Icon.svg"
+          alt="Закрывающая иконка"
+        />
+      </section>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

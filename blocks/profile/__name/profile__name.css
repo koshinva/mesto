@@ -4,6 +4,7 @@
   font-weight: 500;
   margin: 0;
   margin-bottom: 16px;
+  padding-right: 30px;
 }
 @media screen and (max-width: 750px) {
   .profile__name {
