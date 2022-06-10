@@ -7,156 +7,122 @@
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body>
-    <div class="page">
-      <div class="container">
-        <header class="header">
+  <body class="page">
+    <div class="container">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="./images/header/лого.png"
+          alt="логотип шапки сайта"
+        />
+      </header>
+      <main class="main">
+        <section class="profile">
           <img
-            class="header__logo"
-            src="./images/header/лого.png"
-            alt="логотип шапки сайта"
+            class="profile__avatar"
+            src="./images/profile/аватар.jpg"
+            alt="аватар профиля"
           />
-        </header>
-        <main class="main">
-          <section class="profile">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__button-edit" type="button"></button>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button class="profile__button-add" type="button"></button>
+        </section>
+        <section class="place">
+          <div class="place__element">
             <img
-              class="profile__avatar"
-              src="./images/profile/аватар.jpg"
-              alt="аватар профиля"
+              class="place__image"
+              src="./images/place/Карачаевск.jpg"
+              alt="Мостик, ведущий к храму на склоне горы в Карачаевской области."
             />
-            <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <p class="profile__profession">Исследователь океана</p>
-              <img
-                class="profile__button-edit"
-                src="./images/profile/btn_edit.svg"
-                alt="кнопка редактирования"
-              />
+            <div class="place__description">
+              <h2 class="place__name-city">Карачаевск</h2>
+              <button class="place__like" type="button"></button>
             </div>
-            <div class="profile__button-add"></div>
-          </section>
-          <section class="place">
-            <div class="place__element">
-              <img
-                class="place__image"
-                src="./images/place/Карачаевск.jpg"
-                alt="Карачаевск"
-              />
-              <div class="place__description">
-                <h2 class="place__name-city">Карачаевск</h2>
-                <img
-                  class="place__like"
-                  src="./images/place/like/like-noactive.svg"
-                  alt="Символ лайк"
-                />
-              </div>
+          </div>
+          <div class="place__element">
+            <img
+              class="place__image"
+              src="./images/place/Эльбрус1.jpg"
+              alt="Гора Эльбрус."
+            />
+            <div class="place__description">
+              <h2 class="place__name-city">Гора Эльбрус</h2>
+              <button class="place__like" type="button"></button>
             </div>
-            <div class="place__element">
-              <img
-                class="place__image"
-                src="./images/place/Эльбрус1.jpg"
-                alt="Гора Эльбрус"
-              />
-              <div class="place__description">
-                <h2 class="place__name-city">Гора Эльбрус</h2>
-                <img
-                  class="place__like"
-                  src="./images/place/like/like-noactive.svg"
-                  alt="Символ лайк"
-                />
-              </div>
+          </div>
+          <div class="place__element">
+            <img
+              class="place__image"
+              src="./images/place/Домбай1.jpg"
+              alt="Зимний заснеженный пейзаж в регионе Домбай с ручьём, соснами, скалами и одинокой горой."
+            />
+            <div class="place__description">
+              <h2 class="place__name-city">Домбай</h2>
+              <button class="place__like" type="button"></button>
             </div>
-            <div class="place__element">
-              <img
-                class="place__image"
-                src="./images/place/Домбай1.jpg"
-                alt="Домбай"
-              />
-              <div class="place__description">
-                <h2 class="place__name-city">Домбай</h2>
-                <img
-                  class="place__like"
-                  src="./images/place/like/like-noactive.svg"
-                  alt="Символ лайк"
-                />
-              </div>
+          </div>
+          <div class="place__element">
+            <img
+              class="place__image"
+              src="./images/place/Эльбрус2.jpg"
+              alt="Одинокий человек смотрит с вершине скалы на Эльбрус."
+            />
+            <div class="place__description">
+              <h2 class="place__name-city">Гора Эльбрус</h2>
+              <button class="place__like" type="button"></button>
             </div>
-            <div class="place__element">
-              <img
-                class="place__image"
-                src="./images/place/Эльбрус2.jpg"
-                alt="Гора Эльбрус"
-              />
-              <div class="place__description">
-                <h2 class="place__name-city">Гора Эльбрус</h2>
-                <img
-                  class="place__like"
-                  src="./images/place/like/like-noactive.svg"
-                  alt="Символ лайк"
-                />
-              </div>
+          </div>
+          <div class="place__element">
+            <img
+              class="place__image"
+              src="./images/place/Домбай2.jpg"
+              alt="Живописные оттенки желтого, зеленого и оранжевого в лесистой местности в регионе Домбай."
+            />
+            <div class="place__description">
+              <h2 class="place__name-city">Домбай</h2>
+              <button class="place__like" type="button"></button>
             </div>
-            <div class="place__element">
-              <img
-                class="place__image"
-                src="./images/place/Домбай2.jpg"
-                alt="Домбай"
-              />
-              <div class="place__description">
-                <h2 class="place__name-city">Домбай</h2>
-                <img
-                  class="place__like"
-                  src="./images/place/like/like-noactive.svg"
-                  alt="Символ лайк"
-                />
-              </div>
+          </div>
+          <div class="place__element">
+            <img
+              class="place__image"
+              src="./images/place/Карачаево-Черкессия.jpg"
+              alt="Рельефная скалистая местность, покрытая невысокими деревьями и кустарниками, среди ясного солнечного дня в регионе Карачаево-Черкесии."
+            />
+            <div class="place__description">
+              <h2 class="place__name-city">Карачаево-Черкесия</h2>
+              <button class="place__like" type="button"></button>
             </div>
-            <div class="place__element">
-              <img
-                class="place__image"
-                src="./images/place/Карачаево-Черкессия.jpg"
-                alt="Карачаево-Черкесия"
-              />
-              <div class="place__description">
-                <h2 class="place__name-city">Карачаево-Черкесия</h2>
-                <img
-                  class="place__like"
-                  src="./images/place/like/like-noactive.svg"
-                  alt="Символ лайк"
-                />
-              </div>
-            </div>
-          </section>
-        </main>
-        <footer class="footer">
-          <p class="footer__copyright">© 2020 Mesto Russia</p>
-        </footer>
-      </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+      </footer>
     </div>
-    <div class="edit-form edit-form_hidden">
-      <section class="edit-form__body">
+    <div class="edit-form">
+      <div class="edit-form__body">
         <h2 class="edit-form__title">Редактировать профиль</h2>
-        <form class="edit-form__form" action="#" method="get">
+        <form class="edit-form__form" action="#" method="get" name="edit-form">
           <input
-            class="edit-form__input"
+            class="edit-form__input edit-form__input_value_name"
             type="text"
             name="name"
             autocomplete="off"
           />
           <input
-            class="edit-form__input"
+            class="edit-form__input edit-form__input_value_profession"
             type="text"
             name="profession"
             autocomplete="off"
           />
           <button class="edit-form__button" type="submit">Сохранить</button>
         </form>
-        <img
-          class="edit-form__close-icon"
-          src="./images/edit-form/Close-Icon.svg"
-          alt="Закрывающая иконка"
-        />
-      </section>
+        <button class="edit-form__close-icon" type="button"></button>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>

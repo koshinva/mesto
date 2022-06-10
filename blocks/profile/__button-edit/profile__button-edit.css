@@ -1,10 +1,12 @@
 .profile__button-edit {
-  position: absolute;
-  top: 15px;
-  right: 0;
   transition: opacity 0.4s;
   width: 24px;
   height: 24px;
+  background: url(../../../images/profile/btn_edit.svg) center/cover no-repeat;
+  border: none;
+  padding: 0;
+  margin-top: 15px;
+  grid-area: button-edit;
 }
 .profile__button-edit:hover {
   opacity: 0.6;
@@ -12,15 +14,9 @@
 }
 @media screen and (max-width: 750px) {
   .profile__button-edit {
-    top: 8px;
-    right: 10px;
+    margin-top: 8px;
+    margin-right: 19px;  
     width: 18px;
     height: 18px;
   }
 }
-@media screen and (max-width: 500px) {
-    .profile__button-edit {
-      right: 19px;  
-    }
-  }
-  

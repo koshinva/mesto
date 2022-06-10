@@ -7,6 +7,8 @@
   box-sizing: border-box;
   transition: opacity 0.4s;
   position: relative;
+  padding: 0;
+  background: transparent;
 }
 .profile__button-add::before{
     content: '';

@@ -1,5 +1,8 @@
 .edit-form__close-icon {
   position: absolute;
+  background: url(../../../images/edit-form/Close-Icon.svg) center/cover no-repeat;
+  padding: 0;
+  border: none;
   top: -8px;
   right: -8px;
   transform: translate(100%, -100%);

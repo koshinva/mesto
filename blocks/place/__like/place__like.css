@@ -1,6 +1,9 @@
 .place__like {
     width: 22px;
     height: 19px;
+    background: url(../../../images/place/like/like-noactive.svg) center/cover no-repeat;
+    padding: 0;
+    border: none;
     transition: opacity .3s;
 }
 .place__like:hover {

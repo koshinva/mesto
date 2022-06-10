@@ -1,15 +1,23 @@
 .profile__info {
-    width: 336px;
-    text-align: left;
-    padding-left: 30px;
-    position: relative;
+  width: 336px;
+  text-align: left;
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 
+    'name button-edit'
+    'profession profession';
+  column-gap: 18px;
+  row-gap: 16px;
 }
 
 @media screen and (max-width: 750px) {
-    .profile__info {
-        padding-left: 0;
-        text-align: center;
-        width: 282px;
-        margin-bottom: 36px;
-    }
+  .profile__info {
+    margin-left: 0;
+    text-align: center;
+    width: 282px;
+    margin-bottom: 36px;
+    column-gap: 10px;
+    row-gap: 14px;
+  }
 }
