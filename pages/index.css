@@ -25,6 +25,7 @@
 @import url(../blocks/place/__name-city/place__name-city.css);
 @import url(../blocks/place/__like/place__like.css);
 @import url(../blocks/place/__like/_active/place__like_active.css);
+@import url(../blocks/place/__button-remove/place__button-remove.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

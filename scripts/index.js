@@ -20,6 +20,8 @@ const formElementProfile = document.querySelector('.edit-form__form_location_pro
 const formElementPlace = document.querySelector('.edit-form__form_location_place');
 const placeTemplate = document.querySelector('#place-template').content;
 const placeSection = document.querySelector('.place');
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -53,7 +55,8 @@ function addElementPlace(card) {
     .cloneNode(true);
   placeElement.querySelector('.place__image').src = card.link;
   placeElement.querySelector('.place__name-city').textContent = card.name;
-  placeElement.querySelector('.place__like').addEventListener('click', changeLike)
+  placeElement.querySelector('.place__like').addEventListener('click', changeLike);
+  placeElement.querySelector('.place__button-remove').addEventListener('click', removePlace);
   placeSection.append(placeElement);
 }
 
@@ -87,11 +90,15 @@ function formSubmitAddPlace(event) {
   placeElement.querySelector('.place__name-city').textContent = inputTitle.value;
   placeElement.querySelector('.place__image').src = inputLink.value;
   placeElement.querySelector('.place__like').addEventListener('click', changeLike);
+  placeElement.querySelector('.place__button-remove').addEventListener('click', removePlace);
   placeSection.prepend(placeElement);
   closeEditFormPlace();
 }
 function changeLike(event) {
   event.target.classList.toggle('place__like_active');
+}
+function removePlace(event) {
+  event.target.parentNode.remove();
 }
 
 
