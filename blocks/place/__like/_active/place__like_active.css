@@ -1,0 +1,4 @@
+.place__like_active {
+    background: url(../../../../images/place/like/like-active.svg) center/cover
+      no-repeat;
+  }
