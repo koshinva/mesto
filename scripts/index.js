@@ -1,7 +1,11 @@
 const editFormProfile = document.querySelector('.edit-form_profile');
 const editFormPlace = document.querySelector('.edit-form_place');
-const btnCloseEditFormProfile = document.querySelector('.edit-form__close-icon_location_profile');
-const btnCloseEditFormPlace = document.querySelector('.edit-form__close-icon_location_place')
+const btnCloseEditFormProfile = document.querySelector(
+  '.edit-form__close-icon_location_profile'
+);
+const btnCloseEditFormPlace = document.querySelector(
+  '.edit-form__close-icon_location_place'
+);
 const btnOpenEditForm = document.querySelector('.profile__button-edit');
 const btnAddPlace = document.querySelector('.profile__button-add');
 const profileName = document.querySelector('.profile__name');
@@ -10,7 +14,10 @@ const inputName = document.querySelector('.edit-form__input_value_name');
 const inputProfession = document.querySelector(
   '.edit-form__input_value_profession'
 );
-const formElement = document.querySelector('.edit-form__form');
+const inputTitle = document.querySelector('.edit-form__input_value_title');
+const inputLink = document.querySelector('.edit-form__input_value_link');
+const formElementProfile = document.querySelector('.edit-form__form_location_profile');
+const formElementPlace = document.querySelector('.edit-form__form_location_place');
 const placeTemplate = document.querySelector('#place-template').content;
 const placeSection = document.querySelector('.place');
 
@@ -56,6 +63,8 @@ function openEditFormProfile() {
   editFormProfile.classList.add('edit-form_opened');
 }
 function openEditFormPlace() {
+  inputTitle.value = '';
+  inputLink.value = '';
   editFormPlace.classList.add('edit-form_opened');
 }
 function closeEditFormProfile() {
@@ -68,7 +77,17 @@ function formSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputProfession.value;
-  closeEditForm();
+  closeEditFormProfile();
+}
+function formSubmitAddPlace(event) {
+  event.preventDefault();
+  const placeElement = placeTemplate
+    .querySelector('.place__element')
+    .cloneNode(true);
+  placeElement.querySelector('.place__name-city').textContent = inputTitle.value;
+  placeElement.querySelector('.place__image').src = inputLink.value;
+  placeSection.prepend(placeElement);
+  closeEditFormPlace();
 }
 
 initialCards.forEach(addElementPlace);
@@ -76,4 +95,5 @@ btnOpenEditForm.addEventListener('click', openEditFormProfile);
 btnAddPlace.addEventListener('click', openEditFormPlace);
 btnCloseEditFormProfile.addEventListener('click', closeEditFormProfile);
 btnCloseEditFormPlace.addEventListener('click', closeEditFormPlace);
-formElement.addEventListener('submit', formSubmitHandler);
+formElementProfile.addEventListener('submit', formSubmitHandler);
+formElementPlace.addEventListener('submit', formSubmitAddPlace);
