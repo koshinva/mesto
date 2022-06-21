@@ -31,79 +31,13 @@
           <button class="profile__button-add" type="button"></button>
         </section>
         <section class="place">
-          <!-- <div class="place__element">
-            <img
-              class="place__image"
-              src="./images/place/Карачаевск.jpg"
-              alt="Мостик, ведущий к храму на склоне горы в Карачаевской области."
-            />
-            <div class="place__description">
-              <h2 class="place__name-city">Карачаевск</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-          </div>
-          <div class="place__element">
-            <img
-              class="place__image"
-              src="./images/place/Эльбрус1.jpg"
-              alt="Гора Эльбрус."
-            />
-            <div class="place__description">
-              <h2 class="place__name-city">Гора Эльбрус</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-          </div>
-          <div class="place__element">
-            <img
-              class="place__image"
-              src="./images/place/Домбай1.jpg"
-              alt="Зимний заснеженный пейзаж в регионе Домбай с ручьём, соснами, скалами и одинокой горой."
-            />
-            <div class="place__description">
-              <h2 class="place__name-city">Домбай</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-          </div>
-          <div class="place__element">
-            <img
-              class="place__image"
-              src="./images/place/Эльбрус2.jpg"
-              alt="Одинокий человек смотрит с вершине скалы на Эльбрус."
-            />
-            <div class="place__description">
-              <h2 class="place__name-city">Гора Эльбрус</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-          </div>
-          <div class="place__element">
-            <img
-              class="place__image"
-              src="./images/place/Домбай2.jpg"
-              alt="Живописные оттенки желтого, зеленого и оранжевого в лесистой местности в регионе Домбай."
-            />
-            <div class="place__description">
-              <h2 class="place__name-city">Домбай</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-          </div>
-          <div class="place__element">
-            <img
-              class="place__image"
-              src="./images/place/Карачаево-Черкессия.jpg"
-              alt="Рельефная скалистая местность, покрытая невысокими деревьями и кустарниками, среди ясного солнечного дня в регионе Карачаево-Черкесии."
-            />
-            <div class="place__description">
-              <h2 class="place__name-city">Карачаево-Черкесия</h2>
-              <button class="place__like" type="button"></button>
-            </div>
-          </div> -->
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <div class="edit-form">
+    <div class="edit-form edit-form_profile">
       <div class="edit-form__body">
         <h2 class="edit-form__title">Редактировать профиль</h2>
         <form class="edit-form__form" action="#" method="get" name="edit-form">
@@ -121,7 +55,30 @@
           />
           <button class="edit-form__button" type="submit">Сохранить</button>
         </form>
-        <button class="edit-form__close-icon" type="button"></button>
+        <button class="edit-form__close-icon edit-form__close-icon_location_profile" type="button"></button>
+      </div>
+    </div>
+    <div class="edit-form edit-form_place">
+      <div class="edit-form__body">
+        <h2 class="edit-form__title edit-form__title_align_left">Новое место</h2>
+        <form class="edit-form__form" action="#" method="get" name="edit-form">
+          <input
+            class="edit-form__input edit-form__input_value_title"
+            type="text"
+            name="title"
+            autocomplete="off"
+            placeholder="Название"
+          />
+          <input
+            class="edit-form__input edit-form__input_value_link"
+            type="text"
+            name="link"
+            autocomplete="off"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="edit-form__button" type="submit">Создать</button>
+        </form>
+        <button class="edit-form__close-icon edit-form__close-icon_location_place" type="button"></button>
       </div>
     </div>
     <template id="place-template">
