@@ -1,4 +1,4 @@
-.edit-form__body {
+.popup__body {
   width: 430px;
   min-height: 330px;
   background: #fff;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 750px) {
-  .edit-form__body {
+  .popup__body {
     width: 282px;
     min-height: 322px;
     padding: 25px 22px;

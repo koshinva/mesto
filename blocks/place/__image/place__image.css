@@ -5,3 +5,6 @@
     vertical-align: top;
     border-radius: 10px 10px 0 0;
 }
+.place__image:hover {
+    cursor: pointer;
+}

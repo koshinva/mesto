@@ -30,65 +30,85 @@
           </div>
           <button class="profile__button-add" type="button"></button>
         </section>
-        <section class="place">
-
-        </section>
+        <section class="place"></section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <div class="edit-form edit-form_profile">
-      <div class="edit-form__body">
-        <h2 class="edit-form__title">Редактировать профиль</h2>
-        <form class="edit-form__form edit-form__form_location_profile" action="#" method="get" name="edit-form">
+    <div class="popup popup_type_profile">
+      <div class="popup__body">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form
+          class="popup__form popup__form_location_profile"
+          action="#"
+          method="get"
+          name="popup"
+        >
           <input
-            class="edit-form__input edit-form__input_value_name"
+            class="popup__input popup__input_value_name"
             type="text"
             name="name"
             autocomplete="off"
           />
           <input
-            class="edit-form__input edit-form__input_value_profession"
+            class="popup__input popup__input_value_profession"
             type="text"
             name="profession"
             autocomplete="off"
           />
-          <button class="edit-form__button" type="submit">Сохранить</button>
+          <button class="popup__button" type="submit">Сохранить</button>
         </form>
-        <button class="edit-form__close-icon edit-form__close-icon_location_profile" type="button"></button>
+        <button
+          class="popup__close-icon popup__close-icon_location_profile"
+          type="button"
+        ></button>
       </div>
     </div>
-    <div class="edit-form edit-form_place">
-      <div class="edit-form__body">
-        <h2 class="edit-form__title edit-form__title_align_left">Новое место</h2>
-        <form class="edit-form__form edit-form__form_location_place" action="#" method="get" name="edit-form">
+    <div class="popup popup_type_place">
+      <div class="popup__body">
+        <h2 class="popup__title popup__title_align_left">Новое место</h2>
+        <form
+          class="popup__form popup__form_location_place"
+          action="#"
+          method="get"
+          name="popup"
+        >
           <input
-            class="edit-form__input edit-form__input_value_title"
+            class="popup__input popup__input_value_title"
             type="text"
             name="title"
             autocomplete="off"
             placeholder="Название"
           />
           <input
-            class="edit-form__input edit-form__input_value_link"
+            class="popup__input popup__input_value_link"
             type="text"
             name="link"
             autocomplete="off"
             placeholder="Ссылка на картинку"
           />
-          <button class="edit-form__button" type="submit">Создать</button>
+          <button class="popup__button" type="submit">Создать</button>
         </form>
-        <button class="edit-form__close-icon edit-form__close-icon_location_place" type="button"></button>
+        <button
+          class="popup__close-icon popup__close-icon_location_place"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_type_image">
+      <div class="popup__image-container">
+        <img class="popup__image" src="#" alt="" />
+        <p class="popup__image-description"></p>
+        <button
+          class="popup__close-icon popup__close-icon_location_image"
+          type="button"
+        ></button>
       </div>
     </div>
     <template id="place-template">
       <div class="place__element">
-        <img
-          class="place__image"
-          src="#"
-          alt=""
-        />
+        <img class="place__image" src="#" alt="" />
         <div class="place__description">
           <h2 class="place__name-city"></h2>
           <button class="place__like" type="button"></button>

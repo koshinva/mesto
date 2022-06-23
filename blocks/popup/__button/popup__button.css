@@ -1,4 +1,4 @@
-.edit-form__button {
+.popup__button {
   margin-top: 48px;
   width: 100%;
   min-height: 50px;
@@ -11,12 +11,12 @@
   border-radius: 2px;
   transition: opacity 0.3s;
 }
-.edit-form__button:hover {
+.popup__button:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 @media screen and (max-width: 750px) {
-  .edit-form__button {
+  .popup__button {
     margin-top: 45px;
     font-size: 14px;
   }

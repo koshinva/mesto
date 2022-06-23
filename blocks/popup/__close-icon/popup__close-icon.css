@@ -1,6 +1,6 @@
-.edit-form__close-icon {
+.popup__close-icon {
   position: absolute;
-  background: url(../../../images/edit-form/Close-Icon.svg) center/cover no-repeat;
+  background: url(../../../images/popup/Close-Icon.svg) center/cover no-repeat;
   padding: 0;
   border: none;
   top: -8px;
@@ -10,12 +10,12 @@
   height: 32px;
   transition: opacity 0.3s;
 }
-.edit-form__close-icon:hover {
+.popup__close-icon:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 @media screen and (max-width: 750px) {
-  .edit-form__close-icon {
+  .popup__close-icon {
     width: 20px;
     height: 20px;
     top: -16px;
