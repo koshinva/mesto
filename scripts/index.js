@@ -2,7 +2,9 @@ const editFormProfile = document.querySelector('.popup_type_profile');
 const editFormPlace = document.querySelector('.popup_type_place');
 const popupOpenImage = document.querySelector('.popup_type_image');
 const popupImage = document.querySelector('.popup__image');
-const popupImageDescription = document.querySelector('.popup__image-description');
+const popupImageDescription = document.querySelector(
+  '.popup__image-description'
+);
 const btnCloseEditFormProfile = document.querySelector(
   '.popup__close-icon_location_profile'
 );
@@ -22,7 +24,9 @@ const inputProfession = document.querySelector(
 );
 const inputTitle = document.querySelector('.popup__input_value_title');
 const inputLink = document.querySelector('.popup__input_value_link');
-const formElementProfile = document.querySelector('.popup__form_location_profile');
+const formElementProfile = document.querySelector(
+  '.popup__form_location_profile'
+);
 const formElementPlace = document.querySelector('.popup__form_location_place');
 const placeTemplate = document.querySelector('#place-template').content;
 const placeSection = document.querySelector('.place');
@@ -55,17 +59,8 @@ const initialCards = [
 ];
 
 function addElementPlace(card) {
-  const placeElement = placeTemplate
-    .querySelector('.place__element')
-    .cloneNode(true);
-  placeElement.querySelector('.place__image').src = card.link;
-  placeElement.querySelector('.place__name-city').textContent = card.name;
-  placeElement.querySelector('.place__image').addEventListener('click', openImage);
-  placeElement.querySelector('.place__like').addEventListener('click', changeLike);
-  placeElement.querySelector('.place__button-remove').addEventListener('click', removePlace);
-  placeSection.append(placeElement);
+  newCardPlace(card.name, card.link);
 }
-
 function openEditFormProfile() {
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
@@ -78,7 +73,8 @@ function openEditFormPlace() {
 }
 function openImage(event) {
   popupImage.src = event.target.src;
-  popupImageDescription.textContent = event.target.parentNode.querySelector('.place__name-city').textContent;
+  popupImageDescription.textContent =
+    event.target.parentNode.querySelector('.place__name-city').textContent;
   popupOpenImage.classList.add('popup_opened');
 }
 function closeEditFormProfile() {
@@ -98,15 +94,7 @@ function formSubmitHandler(event) {
 }
 function formSubmitAddPlace(event) {
   event.preventDefault();
-  const placeElement = placeTemplate
-    .querySelector('.place__element')
-    .cloneNode(true);
-  placeElement.querySelector('.place__name-city').textContent = inputTitle.value;
-  placeElement.querySelector('.place__image').src = inputLink.value;
-  placeElement.querySelector('.place__image').addEventListener('click', openImage);
-  placeElement.querySelector('.place__like').addEventListener('click', changeLike);
-  placeElement.querySelector('.place__button-remove').addEventListener('click', removePlace);
-  placeSection.prepend(placeElement);
+  newCardPlace(inputTitle.value, inputLink.value, true)
   closeEditFormPlace();
 }
 function changeLike(event) {
@@ -115,12 +103,33 @@ function changeLike(event) {
 function removePlace(event) {
   event.target.parentNode.remove();
 }
+function newCardPlace(title, link, prepend = false) {
+  const placeElement = placeTemplate
+    .querySelector('.place__element')
+    .cloneNode(true);
+  placeElement.querySelector('.place__name-city').textContent = title;
+  placeElement.querySelector('.place__image').src = link;
+  placeElement
+    .querySelector('.place__image')
+    .addEventListener('click', openImage);
+  placeElement
+    .querySelector('.place__like')
+    .addEventListener('click', changeLike);
+  placeElement
+    .querySelector('.place__button-remove')
+    .addEventListener('click', removePlace);
+  if (prepend) {
+    placeSection.prepend(placeElement);
+  } else {
+    placeSection.append(placeElement);
+  }
+}
 
 initialCards.forEach(addElementPlace);
 btnOpenEditForm.addEventListener('click', openEditFormProfile);
 btnAddPlace.addEventListener('click', openEditFormPlace);
 btnCloseEditFormProfile.addEventListener('click', closeEditFormProfile);
 btnCloseEditFormPlace.addEventListener('click', closeEditFormPlace);
-btnClosePopupImage.addEventListener('click', closePopapImage)
+btnClosePopupImage.addEventListener('click', closePopapImage);
 formElementProfile.addEventListener('submit', formSubmitHandler);
 formElementPlace.addEventListener('submit', formSubmitAddPlace);
