@@ -25,10 +25,18 @@
           />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit" type="button"></button>
+            <button
+              class="profile__button-edit"
+              type="button"
+              aria-label="Открыть окно редактирования профиля"
+            ></button>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button class="profile__button-add" type="button"></button>
+          <button
+            class="profile__button-add"
+            type="button"
+            aria-label="Открыть окно добавления карточки"
+          ></button>
         </section>
         <section class="place"></section>
       </main>
@@ -62,6 +70,7 @@
         <button
           class="popup__close-icon popup__close-icon_location_profile"
           type="button"
+          aria-label="Закрыть окно редактирования профиля"
         ></button>
       </div>
     </div>
@@ -93,6 +102,7 @@
         <button
           class="popup__close-icon popup__close-icon_location_place"
           type="button"
+          aria-label="Закрыть окно добавления нового места"
         ></button>
       </div>
     </div>
@@ -103,6 +113,7 @@
         <button
           class="popup__close-icon popup__close-icon_location_image"
           type="button"
+          aria-label="Закрыть окно просмотра изображения"
         ></button>
       </div>
     </div>
@@ -111,9 +122,9 @@
         <img class="place__image" src="#" alt="" />
         <div class="place__description">
           <h2 class="place__name-city"></h2>
-          <button class="place__like" type="button"></button>
+          <button class="place__like" type="button" aria-label="Поставить или убрать лайк"></button>
         </div>
-        <button class="place__button-remove" type="button"></button>
+        <button class="place__button-remove" type="button" aria-label="Удалить карточку"></button>
       </div>
     </template>
     <script src="./scripts/index.js"></script>
