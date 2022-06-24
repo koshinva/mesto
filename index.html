@@ -49,8 +49,6 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <form
           class="popup__form popup__form_location_profile"
-          action="#"
-          method="get"
           name="popup"
         >
           <input
@@ -58,12 +56,14 @@
             type="text"
             name="name"
             autocomplete="off"
+            required
           />
           <input
             class="popup__input popup__input_value_profession"
             type="text"
             name="profession"
             autocomplete="off"
+            required
           />
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
@@ -79,8 +79,6 @@
         <h2 class="popup__title popup__title_align_left">Новое место</h2>
         <form
           class="popup__form popup__form_location_place"
-          action="#"
-          method="get"
           name="popup"
         >
           <input
@@ -89,13 +87,15 @@
             name="title"
             autocomplete="off"
             placeholder="Название"
+            required
           />
           <input
             class="popup__input popup__input_value_link"
-            type="text"
+            type="url"
             name="link"
             autocomplete="off"
             placeholder="Ссылка на картинку"
+            required
           />
           <button class="popup__button" type="submit">Создать</button>
         </form>
