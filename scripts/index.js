@@ -64,12 +64,13 @@ function createCard(title, link) {
   const placeElement = placeTemplate
     .querySelector('.place__element')
     .cloneNode(true);
+  const placeElementImage = placeElement.querySelector('.place__image')
   placeElement.querySelector('.place__name-city').textContent = title;
-  placeElement.querySelector('.place__image').src = link;
-  placeElement.querySelector('.place__image').alt = title;
-  placeElement.querySelector('.place__image').addEventListener('click', (item) => {
-      let srcImage = item.target.src;
-      let nameCity = item.target.closest('.place__element').querySelector('.place__name-city').textContent;
+  placeElementImage.src = link;
+  placeElementImage.alt = title;
+  placeElementImage.addEventListener('click', (item) => {
+      const srcImage = item.target.src;
+      const nameCity = item.target.closest('.place__element').querySelector('.place__name-city').textContent;
       popupViewImageCardImage.src = srcImage;
       popupViewImageCardImage.alt = nameCity;
       popupViewImageDescription.textContent = nameCity;
