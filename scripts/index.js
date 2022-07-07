@@ -112,63 +112,6 @@ function addNewCard(title, link) {
   renderCard(newCard);
 }
 
-function showInputError(formElement, inputElement, textError) {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.textContent = textError;
-  inputElement.classList.add('popup__input_type_error');
-  errorElement.classList.add('popap__input-error_active');
-}
-function hideInputError(formElement, inputElement) {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popap__input-error_active');
-  errorElement.textContent = '';
-}
-function checkInputValidaty(formElement, inputElement) {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-}
-function setEventListener(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__button');
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputItem) => {
-    inputItem.addEventListener('input', () => {
-      checkInputValidaty(formElement, inputItem);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-}
-function hasInvalidInput(inputList) {
-  return inputList.some((inputItem) => {
-    return !inputItem.validity.valid;
-  });
-}
-function toggleButtonState(inputList, buttonElement) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__button_inactive');
-    buttonElement.setAttribute('disabled', 'true');
-  } else {
-    buttonElement.classList.remove('popup__button_inactive');
-    buttonElement.removeAttribute('disabled');
-  }
-}
-
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-    setEventListener(formElement);
-  });
-}
-
-enableValidation();
-
 initialCards.reverse().forEach((card) => {
   addNewCard(card.name, card.link);
 });
