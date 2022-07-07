@@ -54,8 +54,24 @@ function formSubmitAddPlace(event) {
 function changeLike(event) {
   event.target.classList.toggle('place__like_active');
 }
+function closePopupOverlay(popup) {
+  popup.addEventListener('click', (evt) => {
+    if (!evt.target.closest('.popup__body')) {
+      closePopup(popup);
+    }
+  });
+}
+function closePopapEsc(popup) {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  });
+}
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  closePopupOverlay(popup);
+  closePopapEsc(popup);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
