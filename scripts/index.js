@@ -61,17 +61,17 @@ function closePopupOverlay(popup) {
     }
   });
 }
-function closePopapEsc(popup) {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  });
-}
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', function closePopapEsc(evt) {
+    if (evt.key === 'Escape')  {
+      document.removeEventListener('keydown', closePopapEsc, false);
+      closePopup(popup);
+    }
+  }, false);
+  
   closePopupOverlay(popup);
-  closePopapEsc(popup);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
