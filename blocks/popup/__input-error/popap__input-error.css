@@ -3,5 +3,8 @@
     line-height: 1.25;
     margin-top: 5px;
     color: #FF0000;
-    display: none;
+    display: block;
+    height: 25px;
+    box-sizing: border-box;
+    opacity: 0;
 }
