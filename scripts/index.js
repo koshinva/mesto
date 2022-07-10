@@ -34,10 +34,12 @@ const placeSection = document.querySelector('.place');
 function openPopupEditForm() {
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
+  enableValidation(objectSettings);
   openPopup(popupEditProfile);
 }
 function openPopupAddCard() {
   formElementPlace.reset();
+  enableValidation(objectSettings);
   openPopup(popupAddCard);
 }
 function formSubmitHandler(event) {
@@ -56,7 +58,7 @@ function changeLike(event) {
 }
 function closePopupOverlay(popup) {
   popup.addEventListener('click', (evt) => {
-    if (!evt.target.closest('.popup__body')) {
+    if (!evt.target.closest('.popup__body') && !evt.target.closest('.popup__image-container')) {
       closePopup(popup);
     }
   });

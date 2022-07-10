@@ -1,3 +1,12 @@
+const objectSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popap__input-error_active',
+};
+
 function showInputError(formElement, inputElement, textError, obj) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = textError;
@@ -50,18 +59,8 @@ function setEventListener(formElement, obj) {
 function enableValidation(obj) {
   const formList = Array.from(document.querySelectorAll(obj.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
     setEventListener(formElement, obj);
   });
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popap__input-error_active',
-});
+enableValidation(objectSettings);
