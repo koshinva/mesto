@@ -1,4 +1,7 @@
-import Card from "./Card.js";
+import Card from "./card.js";
+import FormValidator from "./validate.js";
+import initialCards from "./initial-cards.js";
+import objectSettings from "./object-settings.js";
 
 const popupEditProfile = document.querySelector('.popup_type_profile');
 const popupAddCard = document.querySelector('.popup_type_place');
@@ -30,19 +33,20 @@ const formElementProfile = document.querySelector(
   '.popup__form_location_profile'
 );
 const formElementPlace = document.querySelector('.popup__form_location_place');
-const placeTemplate = document.querySelector('#place-template').content;
 const placeSection = document.querySelector('.place');
 const templateSelector = '#place-template';
+const validateFormElementProfile = new FormValidator(objectSettings, formElementProfile);
+const validateFormElementPlace = new FormValidator(objectSettings, formElementPlace);
 
 function openPopupEditForm() {
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
-  enableValidation(objectSettings);
+  validateFormElementProfile.enableValidation();
   openPopup(popupEditProfile);
 }
 function openPopupAddCard() {
   formElementPlace.reset();
-  enableValidation(objectSettings);
+  validateFormElementPlace.enableValidation();
   openPopup(popupAddCard);
 }
 function formSubmitHandler(event) {
@@ -114,9 +118,11 @@ btnOpenPopupEditForm.addEventListener('click', openPopupEditForm);
 btnOpenPopupAddCard.addEventListener('click', openPopupAddCard);
 btnClosePopupEditProfile.addEventListener('click', () => {
   closePopup(popupEditProfile);
+  validateFormElementProfile.hideError();
 });
 btnClosePopupAddCard.addEventListener('click', () => {
   closePopup(popupAddCard);
+  validateFormElementPlace.hideError();
 });
 btnClosePopupViewImage.addEventListener('click', () => {
   closePopup(popupViewImage);
