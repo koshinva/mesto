@@ -1,6 +1,4 @@
-import { popupViewImageCardImage, popupViewImageDescription } from './constants.js'
-
-export class Popup {
+export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
   }
@@ -26,23 +24,11 @@ export class Popup {
     document.removeEventListener('keydown', this._handleEscClose);
     this._popup.removeEventListener('click', this._closePopupOverlay);
   };
-  setEventListeners = () => {
+  setEventListeners() {
     this._popup
       .querySelector('.popup__close-icon')
       .addEventListener('click', this.close);
     document.addEventListener('keydown', this._handleEscClose);
     this._popup.addEventListener('click', this._closePopupOverlay);
   };
-}
-
-export class PopupWithImage extends Popup {
-  constructor(popupSelector) {
-    super(popupSelector);
-  }
-  open(name, link) {
-    popupViewImageCardImage.src = link;
-    popupViewImageCardImage.alt = name;
-    popupViewImageDescription.textContent = name;
-    super.open();
-  }
 }
