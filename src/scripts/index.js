@@ -15,7 +15,7 @@ import {
   inputProfession,
   formElementProfile,
   formElementPlace,
-  templateSelector
+  templateSelector,
 } from './constants.js';
 
 const validateFormElementProfile = new FormValidator(
@@ -61,29 +61,38 @@ const popupAddCard = new PopupWithForm('.popup_type_place', {
     popupAddCard.close();
   },
 });
-const popupViewImage = new PopupWithImage('.popup_type_image');
+const popupViewImage = new PopupWithImage(
+  '.popup_type_image',
+  '.popup__image',
+  '.popup__image-description'
+);
 
 function openPopupEditForm() {
   validateFormElementProfile.hideError();
   const dataUserInfo = userInfo.getUserInfo();
   inputName.value = dataUserInfo.name;
   inputProfession.value = dataUserInfo.profession;
-  validateFormElementProfile.enableValidation();
+  validateFormElementProfile.checkButton();
   popupEditProfile.open();
 }
 function openPopupAddCard() {
   validateFormElementPlace.hideError();
   formElementPlace.reset();
-  validateFormElementPlace.enableValidation();
+  validateFormElementPlace.checkButton();
   popupAddCard.open();
 }
-function handleCardClick(name, link, element) {
-  element.addEventListener('click', () => {
-    popupViewImage.open(name, link);
-  });
+function handleCardClick(name, link) {
+  popupViewImage.open(name, link);
 }
 
 btnOpenPopupEditForm.addEventListener('click', openPopupEditForm);
 btnOpenPopupAddCard.addEventListener('click', openPopupAddCard);
+
+popupEditProfile.setEventListeners();
+popupAddCard.setEventListeners();
+popupViewImage.setEventListeners();
+
+validateFormElementProfile.enableValidation();
+validateFormElementPlace.enableValidation();
 
 cardList.renderer();

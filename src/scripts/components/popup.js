@@ -3,7 +3,7 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
   }
   open() {
-    this.setEventListeners();
+    document.addEventListener('keydown', this._handleEscClose);
     this._popup.classList.add('popup_opened');
   }
   close = () => {
@@ -22,13 +22,11 @@ export default class Popup {
   };
   _removeEventListeners = () => {
     document.removeEventListener('keydown', this._handleEscClose);
-    this._popup.removeEventListener('click', this._closePopupOverlay);
   };
   setEventListeners() {
     this._popup
       .querySelector('.popup__close-icon')
       .addEventListener('click', this.close);
-    document.addEventListener('keydown', this._handleEscClose);
     this._popup.addEventListener('click', this._closePopupOverlay);
   };
 }

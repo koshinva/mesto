@@ -68,4 +68,7 @@ export default class FormValidator {
       this._hideInputError(inputItem);
     });
   }
+  checkButton() {
+    this._toggleButtonState();
+  }
 }

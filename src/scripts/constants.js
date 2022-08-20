@@ -1,7 +1,3 @@
-export const popupViewImageCardImage = document.querySelector('.popup__image');
-export const popupViewImageDescription = document.querySelector(
-  '.popup__image-description'
-);
 export const selectorContainer = '.place';
 export const btnOpenPopupEditForm = document.querySelector(
   '.profile__button-edit'

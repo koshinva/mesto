@@ -31,7 +31,9 @@ class Card {
     this._card
       .querySelector('.place__button-remove')
       .addEventListener('click', this._deleteCard);
-    this._handleCardClick(this._name, this._link, elementImage);
+    elementImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
   }
 
   _createCard() {
