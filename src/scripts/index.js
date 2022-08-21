@@ -35,8 +35,7 @@ const cardList = new Section(
   {
     items: initialCards.reverse(),
     renderer: (item) => {
-      const newCard = new Card(item, templateSelector, handleCardClick);
-      const card = newCard.getCard();
+      const card = createCard(item, templateSelector, handleCardClick);
       cardList.addItem(card);
     },
   },
@@ -51,12 +50,11 @@ const popupEditProfile = new PopupWithForm('.popup_type_profile', {
 });
 const popupAddCard = new PopupWithForm('.popup_type_place', {
   handleFormSubmit: ({ title, link }) => {
-    const newCard = new Card(
+    const card = createCard(
       { name: title, link: link },
       templateSelector,
       handleCardClick
     );
-    const card = newCard.getCard();
     cardList.addItem(card);
     popupAddCard.close();
   },
@@ -67,6 +65,11 @@ const popupViewImage = new PopupWithImage(
   '.popup__image-description'
 );
 
+function createCard(data, templateSelector, handleCardClick) {
+  const newCard = new Card(data, templateSelector, handleCardClick);
+  const card = newCard.getCard();
+  return card;
+}
 function openPopupEditForm() {
   validateFormElementProfile.hideError();
   const dataUserInfo = userInfo.getUserInfo();
