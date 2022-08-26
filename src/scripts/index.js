@@ -33,7 +33,7 @@ const userInfo = new UserInfo({
 
 const cardList = new Section(
   {
-    items: initialCards.reverse(),
+    items: getCardInfo(),
     renderer: (item) => {
       const card = createCard(item, templateSelector, handleCardClick);
       cardList.addItem(card);
@@ -45,6 +45,7 @@ const cardList = new Section(
 const popupEditProfile = new PopupWithForm('.popup_type_profile', {
   handleFormSubmit: ({ name, profession }) => {
     userInfo.setUserInfo(name, profession);
+
     popupEditProfile.close();
   },
 });
@@ -99,3 +100,27 @@ validateFormElementProfile.enableValidation();
 validateFormElementPlace.enableValidation();
 
 cardList.renderer();
+
+// async function getInfo() {
+//   const resp = await fetch('https://nomoreparties.co/v1/cohort-49/users/me', {
+//     headers: {
+//       authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee'
+//     }
+//   });
+//   const info  = await resp.json();
+//   console.log(info)
+// }
+
+// getInfo();
+
+async function getCardInfo() {
+  try {
+    const resp = await fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
+      headers: { authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee' },
+    });
+    const data = await resp.json();
+    return data;
+  } catch(e) {
+    console.log('Ошибка загрузки карточек')
+  }
+}
