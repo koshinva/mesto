@@ -23,6 +23,8 @@
 @import url(../blocks/place/__image/place__image.css);
 @import url(../blocks/place/__description/place__description.css);
 @import url(../blocks/place/__name-city/place__name-city.css);
+@import url(../blocks/place/__score/place__score.css);
+@import url(../blocks/place/__count-like/place__count-like.css);
 @import url(../blocks/place/__like/place__like.css);
 @import url(../blocks/place/__like/_active/place__like_active.css);
 @import url(../blocks/place/__button-remove/place__button-remove.css);

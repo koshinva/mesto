@@ -5,7 +5,7 @@ import Section from './components/section.js';
 import UserInfo from './components/userInfo.js';
 import PopupWithImage from './components/popupWithImage.js';
 import PopupWithForm from './components/popupWithForm.js';
-import initialCards from './initial-cards.js';
+// import initialCards from './initial-cards.js';
 import objectSettings from './object-settings.js';
 import {
   selectorContainer,
@@ -124,8 +124,8 @@ async function getCardInfo() {
     );
     const data = await resp.json();
     return data;
-  } catch (e) {
-    console.log('Ошибка загрузки карточек');
+  } catch (err) {
+    console.error(err);
   }
 }
 
@@ -143,8 +143,8 @@ async function editProfileServer(name, about) {
       }),
     });
     // getInfo();
-  } catch (e) {
-    console.log('Не удалось изменить данные пользователя');
+  } catch (err) {
+    console.error(err);
   }
 }
 
@@ -161,7 +161,25 @@ async function addNewCardServer(name, link) {
         link: link,
       }),
     });
-  } catch (e) {
-    console.log('Ошибка в добавлении карточки');
+  } catch (err) {
+    console.error(err);
   }
 }
+
+// async function likeCard(id) {
+//   try {
+//     await fetch(`https://mesto.nomoreparties.co/v1/cohort-49/cards/_${id}/likes`, {
+//       method: 'PUT',
+//       headers: {
+//         authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
+//         'Content-type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         name: name,
+//         about: about,
+//       }),
+//     });
+//   } catch(err) {
+//     console.error(err)
+//   }
+// }

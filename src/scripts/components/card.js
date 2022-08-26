@@ -2,8 +2,12 @@ class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
+    // this._id = data._id;
+    this._countLike = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    // this._likeCard = likeCard;
+    // this._disLikeCard = disLikeCard;
   }
   _getTemplate() {
     const placeTemplate = document
@@ -40,10 +44,12 @@ class Card {
     this._card = this._getTemplate();
     const placeElementImage = this._card.querySelector('.place__image');
     const placeElementName = this._card.querySelector('.place__name-city');
+    const placeCountLike = this._card.querySelector('.place__count-like');
     this._setEventListener(placeElementImage);
     placeElementName.textContent = this._name;
     placeElementImage.src = this._link;
     placeElementImage.alt = this._name;
+    placeCountLike.textContent = this._countLike;
   }
 
   getCard() {

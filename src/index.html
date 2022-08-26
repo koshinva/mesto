@@ -137,9 +137,20 @@
         <img class="place__image" src="#" alt="" />
         <div class="place__description">
           <h2 class="place__name-city"></h2>
-          <button class="place__like" type="button" aria-label="Поставить или убрать лайк"></button>
+          <div class="place__score">
+            <button
+              class="place__like"
+              type="button"
+              aria-label="Поставить или убрать лайк"
+            ></button>
+            <span class="place__count-like"></span>
+          </div>
         </div>
-        <button class="place__button-remove" type="button" aria-label="Удалить карточку"></button>
+        <button
+          class="place__button-remove"
+          type="button"
+          aria-label="Удалить карточку"
+        ></button>
       </div>
     </template>
   </body>
