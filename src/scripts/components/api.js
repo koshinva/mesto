@@ -16,7 +16,7 @@ export default class Api {
       console.log(err);
     }
   }
-
+  
   async getCardInfo() {
     try {
       const resp = await fetch(

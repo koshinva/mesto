@@ -1,0 +1,47 @@
+.profile__button-change-avatar {
+  width: 120px;
+  height: 120px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  position: relative;
+  background-color: inherit;
+}
+.profile__button-change-avatar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+.profile__button-change-avatar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  transform: translateY(-50%) translateX(-50%);
+  background: url(../../../images/profile/pensle.svg) center/cover no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+.profile__button-change-avatar:hover {
+  cursor: pointer;
+}
+.profile__button-change-avatar:hover:before,
+.profile__button-change-avatar:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+@media screen and (max-width: 750px) {
+  .profile__button-change-avatar {
+    margin-bottom: 22.25px;
+  }
+}

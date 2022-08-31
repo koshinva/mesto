@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({ selectorName, selectorProfession }) {
+  constructor({ selectorName, selectorProfession, selectorAvatar }) {
     this._profileName = document.querySelector(selectorName);
     this._profileProfession = document.querySelector(selectorProfession);
+    this._profileAvatar = document.querySelector(selectorAvatar);
     this._id = '';
   }
   getUserInfo() {
@@ -10,12 +11,20 @@ export default class UserInfo {
       profession: this._profileProfession.textContent,
     };
   }
-  setUserInfo(name, profession, id) {
-    this._profileName.textContent = name;
-    this._profileProfession.textContent = profession;
+  getUserAvatar() {
+    return this._profileAvatar.src;
+  }
+  setUserId(id) {
     this._id = id;
   }
+  setUserInfo(name, profession) {
+    this._profileName.textContent = name;
+    this._profileProfession.textContent = profession;
+  }
+  setUserAvatar(avatar) {
+    this._profileAvatar.src = avatar;
+  }
   getUserId() {
-    console.log(this._id);
+    return this._id;
   }
 }

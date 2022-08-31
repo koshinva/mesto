@@ -17,11 +17,16 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/profile/аватар.jpg')%>"
-            alt="аватар профиля"
-          />
+          <button 
+            class="profile__button-change-avatar" 
+            type="button" 
+            aria-label="Открыть окно изменения аватара профиля">
+            <img
+              class="profile__avatar"
+              src=""
+              alt="аватар профиля"
+            />
+          </button>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button
@@ -140,6 +145,32 @@
           class="popup__close-icon popup__close-icon_location_delete-card"
           type="button"
           aria-label="Закрыть окно подтверждения удаления карточки"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_type_change-avatar">
+      <div class="popup__body popup__body_location_change-avatar">
+        <h2 class="popup__title popup__title_align_left">Обновить аватар</h2>
+        <form
+          class="popup__form popup__form_location_change-avatar"
+          name="popup"
+          novalidate
+        >
+          <input
+            class="popup__input popup__input_value_link-avatar"
+            id="input-link-avatar"
+            type="url"
+            name="avatar"
+            autocomplete="off"
+            required
+          />
+          <span class="popup__input-error input-link-avatar-error"></span>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+        <button
+          class="popup__close-icon popup__close-icon_location_change-avatar"
+          type="button"
+          aria-label="Закрыть окно изменения аватара профиля"
         ></button>
       </div>
     </div>
