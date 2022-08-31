@@ -5,7 +5,8 @@ import Section from './components/section.js';
 import UserInfo from './components/userInfo.js';
 import PopupWithImage from './components/popupWithImage.js';
 import PopupWithForm from './components/popupWithForm.js';
-// import initialCards from './initial-cards.js';
+import PopupWithDeleteCard from './components/popupWithDeleteCard.js';
+import Api from './components/api.js';
 import objectSettings from './object-settings.js';
 import {
   selectorContainer,
@@ -18,6 +19,7 @@ import {
   templateSelector,
 } from './constants.js';
 
+const api = new Api();
 const validateFormElementProfile = new FormValidator(
   objectSettings,
   formElementProfile
@@ -31,9 +33,12 @@ const userInfo = new UserInfo({
   selectorProfession: '.profile__profession',
 });
 
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo(data.name, data.about);
+});
 const cardList = new Section(
   {
-    items: getCardInfo(),
+    items: api.getCardInfo(),
     renderer: (item) => {
       const card = createCard(item, templateSelector, handleCardClick);
       cardList.addItem(card);
@@ -45,19 +50,16 @@ const cardList = new Section(
 const popupEditProfile = new PopupWithForm('.popup_type_profile', {
   handleFormSubmit: ({ name, profession }) => {
     userInfo.setUserInfo(name, profession);
-    editProfileServer(name, profession);
+    api.editProfile(name, profession);
     popupEditProfile.close();
   },
 });
 const popupAddCard = new PopupWithForm('.popup_type_place', {
   handleFormSubmit: ({ title, link }) => {
-    const card = createCard(
-      { name: title, link: link },
-      templateSelector,
-      handleCardClick
-    );
-    cardList.addItem(card);
-    addNewCardServer(title, link);
+    api.addNewCard(title, link).then((data) => {
+      const card = createCard(data, templateSelector, handleCardClick);
+      cardList.addItem(card);
+    });
     popupAddCard.close();
   },
 });
@@ -66,9 +68,23 @@ const popupViewImage = new PopupWithImage(
   '.popup__image',
   '.popup__image-description'
 );
+const popupDeleteCard = new PopupWithDeleteCard('.popup_type_delete-card', {
+  deleteCard: function () {
+    console.log('попап удаления карточки');
+  },
+});
 
 function createCard(data, templateSelector, handleCardClick) {
-  const newCard = new Card(data, templateSelector, handleCardClick);
+  const newCard = new Card(data, templateSelector, "28600ea3ec9a1bf34f02e0a3", {
+    handleCardClick: handleCardClick,
+    removeCard: () => {
+      popupDeleteCard.open();
+      return popupDeleteCard.promiseDeleteCard();
+    },
+    deleteCardServer: api.deleteCard,
+    likeCardServer: api.likeCard,
+    disLikeCardServer: api.disLikeCard
+  });
   const card = newCard.getCard();
   return card;
 }
@@ -96,90 +112,9 @@ btnOpenPopupAddCard.addEventListener('click', openPopupAddCard);
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
 popupViewImage.setEventListeners();
+popupDeleteCard.setEventListeners();
 
 validateFormElementProfile.enableValidation();
 validateFormElementPlace.enableValidation();
 
 cardList.renderer();
-
-async function getInfo() {
-  const resp = await fetch('https://nomoreparties.co/v1/cohort-49/users/me', {
-    headers: {
-      authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-    },
-  });
-  const info = await resp.json();
-  console.log(info);
-}
-
-// getInfo();
-
-async function getCardInfo() {
-  try {
-    const resp = await fetch(
-      'https://mesto.nomoreparties.co/v1/cohort-49/cards',
-      {
-        headers: { authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee' },
-      }
-    );
-    const data = await resp.json();
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-async function editProfileServer(name, about) {
-  try {
-    await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
-      method: 'PATCH',
-      headers: {
-        authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        about: about,
-      }),
-    });
-    // getInfo();
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-async function addNewCardServer(name, link) {
-  try {
-    await fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-      method: 'POST',
-      headers: {
-        authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
-    });
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-// async function likeCard(id) {
-//   try {
-//     await fetch(`https://mesto.nomoreparties.co/v1/cohort-49/cards/_${id}/likes`, {
-//       method: 'PUT',
-//       headers: {
-//         authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-//         'Content-type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         name: name,
-//         about: about,
-//       }),
-//     });
-//   } catch(err) {
-//     console.error(err)
-//   }
-// }

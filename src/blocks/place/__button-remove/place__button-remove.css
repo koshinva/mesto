@@ -9,6 +9,7 @@
   background: url(../../../images/place/remove_icon/remove_icon.svg)
     center/cover no-repeat;
   transition: opacity 0.3s;
+  display: none;
 }
 
 .place__button-remove:hover {
