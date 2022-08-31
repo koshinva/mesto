@@ -23,6 +23,7 @@ import {
 } from './constants.js';
 
 const api = new Api();
+
 const validateFormElementProfile = new FormValidator(
   objectSettings,
   formElementProfile
@@ -34,18 +35,12 @@ const validateFormElementPlace = new FormValidator(
 const validateFormElementAvatar = new FormValidator(
   objectSettings,
   formElementAvatar
-)
+);
 
 const userInfo = new UserInfo({
   selectorName: '.profile__name',
   selectorProfession: '.profile__profession',
   selectorAvatar: '.profile__avatar',
-});
-
-api.getUserInfo().then((data) => {
-  userInfo.setUserInfo(data.name, data.about);
-  userInfo.setUserAvatar(data.avatar);
-  userInfo.setUserId(data._id);
 });
 
 const cardList = new Section(
@@ -93,8 +88,8 @@ const popupChangeAvatar = new PopupWithForm('.popup_type_change-avatar', {
     userInfo.setUserAvatar(avatar);
     popupChangeAvatar.renderLoading(false, 'Сохранить');
     popupChangeAvatar.close();
-  }
-})
+  },
+});
 
 function createCard(data, templateSelector, handleCardClick) {
   const newCard = new Card(data, templateSelector, userInfo.getUserId(), {
@@ -105,7 +100,7 @@ function createCard(data, templateSelector, handleCardClick) {
     },
     deleteCardServer: api.deleteCard,
     likeCardServer: api.likeCard,
-    disLikeCardServer: api.disLikeCard
+    disLikeCardServer: api.disLikeCard,
   });
   const card = newCard.getCard();
   return card;
@@ -136,7 +131,7 @@ function handleCardClick(name, link) {
 
 btnOpenPopupEditForm.addEventListener('click', openPopupEditForm);
 btnOpenPopupAddCard.addEventListener('click', openPopupAddCard);
-btnOpenPopupChangeAvatar.addEventListener('click', openPopupChangeAvatar)
+btnOpenPopupChangeAvatar.addEventListener('click', openPopupChangeAvatar);
 
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
@@ -148,4 +143,10 @@ validateFormElementProfile.enableValidation();
 validateFormElementPlace.enableValidation();
 validateFormElementAvatar.enableValidation();
 
-cardList.renderer();
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo(data.name, data.about);
+  userInfo.setUserAvatar(data.avatar);
+  userInfo.setUserId(data._id);
+}).then(() => {
+  cardList.renderer();
+})

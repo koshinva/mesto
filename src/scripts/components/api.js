@@ -1,5 +1,4 @@
 export default class Api {
-  constructor() {}
   async getUserInfo() {
     try {
       const resp = await fetch(
