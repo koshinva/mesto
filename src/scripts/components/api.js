@@ -1,143 +1,93 @@
 export default class Api {
-  async getUserInfo() {
-    try {
-      const resp = await fetch(
-        'https://nomoreparties.co/v1/cohort-49/users/me',
-        {
-          headers: {
-            authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-          },
-        }
-      );
-      const info = await resp.json();
-      return info;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  
-  async getCardInfo() {
-    try {
-      const resp = await fetch(
-        'https://mesto.nomoreparties.co/v1/cohort-49/cards',
-        {
-          headers: { authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee' },
-        }
-      );
-      const data = await resp.json();
-      return data;
-    } catch (err) {
-      console.error(err);
-    }
+  constructor(options) {
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
   }
 
-  async editProfile(name, about) {
-    try {
-      await fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
-        method: 'PATCH',
-        headers: {
-          authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          about: about,
-        }),
-      });
-    } catch (err) {
-      console.error(err);
+  _checkResponse = (resp) => {
+    if (resp.ok) {
+      return resp.json();
     }
-  }
+    return Promise.reject(`Ошибка: ${resp.status}`);
+  };
+  getUserInfo = () => {
+    return fetch('https://nomoreparties.co/v1/cohort-49/users/me', {
+      headers: this._headers,
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
 
-  async addNewCard(name, link) {
-    try {
-      const resp = await fetch(
-        'https://mesto.nomoreparties.co/v1/cohort-49/cards',
-        {
-          method: 'POST',
-          headers: {
-            authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: name,
-            link: link,
-          }),
-        }
-      );
-      const newCard = resp.json();
-      return newCard;
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  getCardInfo = () => {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
 
-  async deleteCard(id) {
-    try {
-      await fetch(`https://mesto.nomoreparties.co/v1/cohort-49/cards/${id}`, {
-        method: 'DELETE',
-        headers: {
-          authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  editProfile = (name, about) => {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
 
-  async likeCard(id) {
-    try {
-      const resp = await fetch(
-        `https://mesto.nomoreparties.co/v1/cohort-49/cards/${id}/likes`,
-        {
-          method: 'PUT',
-          headers: {
-            authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-          },
-        }
-      );
-      const data = await resp.json();
-      return data;
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  addNewCard = (name, link) => {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
 
-  async disLikeCard(id) {
-    try {
-      const resp = await fetch(
-        `https://mesto.nomoreparties.co/v1/cohort-49/cards/${id}/likes`,
-        {
-          method: 'DELETE',
-          headers: {
-            authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-          },
-        }
-      );
-      const data = await resp.json();
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  deleteCard = (id) => {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
 
-  async apdateAvatar(urlAvatar) {
-    try {
-      await fetch(
-        'https://mesto.nomoreparties.co/v1/cohort-49/users/me/avatar',
-        {
-          method: 'PATCH',
-          headers: {
-            authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            avatar: urlAvatar,
-          }),
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  likeCard = (id) => {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
+
+  disLikeCard = (id) => {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
+
+  apdateAvatar = (urlAvatar) => {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: urlAvatar,
+      }),
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  };
 }

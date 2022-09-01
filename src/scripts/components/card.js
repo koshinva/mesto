@@ -26,56 +26,77 @@ class Card {
     return placeTemplate;
   }
 
-  _changeLike = (evt) => {
-    if (!evt.currentTarget.classList.contains('place__like_active')) {
-      evt.currentTarget.classList.add('place__like_active');
-      this._likeCardServer(this._idCard).then((data) => {
-        this._card.querySelector('.place__count-like').textContent = data.likes.length;
-      });
+  _changeLike = () => {
+    if (!this._placeElementIconLike.classList.contains('place__like_active')) {
+      this._likeCardServer(this._idCard)
+        .then((data) => {
+          this._renderIconLike(true, data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      evt.currentTarget.classList.remove('place__like_active');
-      this._disLikeCardServer(this._idCard).then((data) => {
-        this._card.querySelector('.place__count-like').textContent = data.likes.length;
-      });
+      this._disLikeCardServer(this._idCard)
+        .then((data) => {
+          this._renderIconLike(false, data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
+  };
+
+  _renderIconLike = (isLike, data) => {
+    if (isLike) {
+      this._placeElementIconLike.classList.add('place__like_active');
+    } else {
+      this._placeElementIconLike.classList.remove('place__like_active');
+    }
+    this._placeCountLike.textContent = data.likes.length;
   };
 
   deleteCard() {
     this._card.remove();
     this._card = null;
-  };
+  }
 
-  _setEventListener(elementImage, placeElementIconLike, placeElementIconDelete) {
-    placeElementIconLike.addEventListener('click', this._changeLike);
-    placeElementIconDelete.addEventListener('click', () => this._removeCard());
+  _setEventListener = (elementImage) => {
+    this._placeElementIconLike.addEventListener('click', this._changeLike);
+    this._placeElementIconDelete.addEventListener('click', () =>
+      this._removeCard()
+    );
     elementImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
-  }
-  _changeCountLike(placeCountLike) {
-    placeCountLike.textContent = this._countLike;
-  }
-  _checkIconDelete(placeElementIconDelete) {
+  };
+  _changeCountLike = () => {
+    this._placeCountLike.textContent = this._countLike;
+  };
+  _checkIconDelete = () => {
     if (this._idOwner == this._idUser) {
-      placeElementIconDelete.classList.add('place__button-remove_visible');
+      this._placeElementIconDelete.classList.add(
+        'place__button-remove_visible'
+      );
     }
-  }
-  _checkIconLike(placeElementIconLike) {
+  };
+  _checkIconLike = () => {
     if (this._likes.some((like) => like._id === this._idUser)) {
-      placeElementIconLike.classList.add('place__like_active');
+      this._placeElementIconLike.classList.add('place__like_active');
     }
-  }
+  };
   _createCard() {
     this._card = this._getTemplate();
+    this._placeElementIconLike = this._card.querySelector('.place__like');
+    this._placeElementIconDelete = this._card.querySelector(
+      '.place__button-remove'
+    );
+    this._placeCountLike = this._card.querySelector('.place__count-like');
     const placeElementImage = this._card.querySelector('.place__image');
     const placeElementName = this._card.querySelector('.place__name-city');
-    const placeElementIconLike = this._card.querySelector('.place__like');
-    const placeElementIconDelete = this._card.querySelector('.place__button-remove');
-    let placeCountLike = this._card.querySelector('.place__count-like');
-    this._checkIconDelete(placeElementIconDelete);
-    this._checkIconLike(placeElementIconLike);
-    this._setEventListener(placeElementImage, placeElementIconLike, placeElementIconDelete);
-    this._changeCountLike(placeCountLike);
+    this._checkIconDelete();
+    this._checkIconLike();
+    this._setEventListener(placeElementImage);
+    this._changeCountLike();
     placeElementName.textContent = this._name;
     placeElementImage.src = this._link;
     placeElementImage.alt = this._name;

@@ -1,13 +1,13 @@
 import '../pages/index.css';
-import Card from './components/card.js';
-import FormValidator from './components/validate.js';
-import Section from './components/section.js';
-import UserInfo from './components/userInfo.js';
-import PopupWithImage from './components/popupWithImage.js';
-import PopupWithForm from './components/popupWithForm.js';
-import PopupWithDeleteCard from './components/popupWithDeleteCard.js';
-import Api from './components/api.js';
-import objectSettings from './object-settings.js';
+import Card from '../scripts/components/Card.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import Section from '../scripts/components/Section.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithDeleteCard from '../scripts/components/PopupWithDeleteCard.js';
+import Api from '../scripts/components/Api.js';
+import objectSettings from '../scripts/utils/object-settings.js';
 import {
   selectorContainer,
   btnOpenPopupEditForm,
@@ -20,9 +20,15 @@ import {
   formElementPlace,
   formElementAvatar,
   templateSelector,
-} from './constants.js';
+} from '../scripts/utils/constants.js';
 
-const api = new Api();
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
+  headers: {
+    authorization: 'eca0b75c-d6e7-4d32-8bb7-efde9f6a94ee',
+    'Content-type': 'application/json',
+  },
+});
 
 const validateFormElementProfile = new FormValidator(
   objectSettings,
@@ -45,7 +51,6 @@ const userInfo = new UserInfo({
 
 const cardList = new Section(
   {
-    items: api.getCardInfo(),
     renderer: (item) => {
       const card = createCard(item, templateSelector, handleCardClick);
       cardList.addItem(card);
@@ -56,20 +61,39 @@ const cardList = new Section(
 
 const popupEditProfile = new PopupWithForm('.popup_type_profile', {
   handleFormSubmit: ({ name, profession }) => {
-    userInfo.setUserInfo(name, profession);
-    api.editProfile(name, profession);
-    popupEditProfile.renderLoading(false, 'Сохранить');
-    popupEditProfile.close();
+    renderLoading(true, popupEditProfile.getButton(), 'Сохранить');
+    api
+      .editProfile(name, profession)
+      .then(() => {
+        userInfo.setUserInfo(name, profession);
+        popupEditProfile.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        renderLoading(false, popupEditProfile.getButton(), 'Сохранить');
+      });
   },
 });
 const popupAddCard = new PopupWithForm('.popup_type_place', {
   handleFormSubmit: ({ title, link }) => {
-    api.addNewCard(title, link).then((data) => {
-      const card = createCard(data, templateSelector, handleCardClick);
-      cardList.addItem(card);
-    });
-    popupAddCard.renderLoading(false, 'Создать');
-    popupAddCard.close();
+    renderLoading(true, popupAddCard.getButton(), 'Создать');
+    api
+      .addNewCard(title, link)
+      .then((data) => {
+        const card = createCard(data, templateSelector, handleCardClick);
+        cardList.addItem(card);
+      })
+      .then(() => {
+        popupAddCard.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        renderLoading(false, popupAddCard.getButton(), 'Создать');
+      });
   },
 });
 const popupViewImage = new PopupWithImage(
@@ -80,13 +104,28 @@ const popupViewImage = new PopupWithImage(
 const popupDeleteCard = new PopupWithDeleteCard('.popup_type_delete-card');
 const popupChangeAvatar = new PopupWithForm('.popup_type_change-avatar', {
   handleFormSubmit: ({ avatar }) => {
-    api.apdateAvatar(avatar);
-    userInfo.setUserAvatar(avatar);
-    popupChangeAvatar.renderLoading(false, 'Сохранить');
-    popupChangeAvatar.close();
+    renderLoading(true, popupChangeAvatar.getButton(), 'Сохранить');
+    api
+      .apdateAvatar(avatar)
+      .then(() => {
+        userInfo.setUserAvatar(avatar);
+        popupChangeAvatar.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        renderLoading(false, popupChangeAvatar.getButton(), 'Сохранить');
+      });
   },
 });
-
+function renderLoading(isLoading, buttonPopup, textButtonPopup) {
+  if (isLoading) {
+    buttonPopup.textContent = 'Сохранение...';
+  } else {
+    buttonPopup.textContent = textButtonPopup;
+  }
+}
 function createCard(data, templateSelector, handleCardClick) {
   const newCard = new Card(data, templateSelector, userInfo.getUserId(), {
     handleCardClick: handleCardClick,
@@ -150,13 +189,13 @@ validateFormElementProfile.enableValidation();
 validateFormElementPlace.enableValidation();
 validateFormElementAvatar.enableValidation();
 
-api
-  .getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data.name, data.about);
-    userInfo.setUserAvatar(data.avatar);
-    userInfo.setUserId(data._id);
+Promise.all([api.getUserInfo(), api.getCardInfo()])
+  .then(([userData, cardInfo]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+    userInfo.setUserId(userData._id)
+    cardList.renderItems(cardInfo);
   })
-  .then(() => {
-    cardList.renderer();
+  .catch((err) => {
+    console.log(err);
   });

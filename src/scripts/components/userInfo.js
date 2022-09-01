@@ -3,7 +3,6 @@ export default class UserInfo {
     this._profileName = document.querySelector(selectorName);
     this._profileProfession = document.querySelector(selectorProfession);
     this._profileAvatar = document.querySelector(selectorAvatar);
-    this._id = '';
   }
   getUserInfo() {
     return {
@@ -14,15 +13,15 @@ export default class UserInfo {
   getUserAvatar() {
     return this._profileAvatar.src;
   }
-  setUserId(id) {
-    this._id = id;
-  }
-  setUserInfo(name, profession) {
+  setUserInfo(name, about) {
     this._profileName.textContent = name;
-    this._profileProfession.textContent = profession;
+    this._profileProfession.textContent = about;
   }
   setUserAvatar(avatar) {
     this._profileAvatar.src = avatar;
+  }
+  setUserId(id) {
+    this._id = id;
   }
   getUserId() {
     return this._id;
