@@ -77,11 +77,7 @@ const popupViewImage = new PopupWithImage(
   '.popup__image',
   '.popup__image-description'
 );
-const popupDeleteCard = new PopupWithDeleteCard('.popup_type_delete-card', {
-  deleteCard: function () {
-    console.log('попап удаления карточки');
-  },
-});
+const popupDeleteCard = new PopupWithDeleteCard('.popup_type_delete-card');
 const popupChangeAvatar = new PopupWithForm('.popup_type_change-avatar', {
   handleFormSubmit: ({ avatar }) => {
     api.apdateAvatar(avatar);
@@ -94,17 +90,28 @@ const popupChangeAvatar = new PopupWithForm('.popup_type_change-avatar', {
 function createCard(data, templateSelector, handleCardClick) {
   const newCard = new Card(data, templateSelector, userInfo.getUserId(), {
     handleCardClick: handleCardClick,
-    removeCard: () => {
-      popupDeleteCard.open();
-      return popupDeleteCard.promiseDeleteCard();
-    },
-    deleteCardServer: api.deleteCard,
+    removeCard: () => handleCardDelete(newCard),
     likeCardServer: api.likeCard,
     disLikeCardServer: api.disLikeCard,
   });
   const card = newCard.getCard();
   return card;
 }
+function handleCardDelete(card) {
+  popupDeleteCard.setPopupHandler(() => {
+    api
+      .deleteCard(card._idCard)
+      .then(() => {
+        card.deleteCard();
+        popupDeleteCard.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+  popupDeleteCard.open();
+}
+
 function openPopupEditForm() {
   validateFormElementProfile.hideError();
   const dataUserInfo = userInfo.getUserInfo();
@@ -143,10 +150,13 @@ validateFormElementProfile.enableValidation();
 validateFormElementPlace.enableValidation();
 validateFormElementAvatar.enableValidation();
 
-api.getUserInfo().then((data) => {
-  userInfo.setUserInfo(data.name, data.about);
-  userInfo.setUserAvatar(data.avatar);
-  userInfo.setUserId(data._id);
-}).then(() => {
-  cardList.renderer();
-})
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo(data.name, data.about);
+    userInfo.setUserAvatar(data.avatar);
+    userInfo.setUserId(data._id);
+  })
+  .then(() => {
+    cardList.renderer();
+  });

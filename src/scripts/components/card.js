@@ -3,7 +3,7 @@ class Card {
     data,
     templateSelector,
     idUser,
-    { handleCardClick, removeCard, deleteCardServer, likeCardServer, disLikeCardServer }
+    { handleCardClick, removeCard, likeCardServer, disLikeCardServer }
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -15,7 +15,6 @@ class Card {
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._removeCard = removeCard;
-    this._deleteCardServer = deleteCardServer;
     this._likeCardServer = likeCardServer;
     this._disLikeCardServer = disLikeCardServer;
   }
@@ -41,16 +40,14 @@ class Card {
     }
   };
 
-  _deleteCard = () => {
-    this._removeCard().then(() => {
-      this._card.remove();
-      this._deleteCardServer(this._idCard);
-    });
+  deleteCard() {
+    this._card.remove();
+    this._card = null;
   };
 
   _setEventListener(elementImage, placeElementIconLike, placeElementIconDelete) {
     placeElementIconLike.addEventListener('click', this._changeLike);
-    placeElementIconDelete.addEventListener('click', this._deleteCard);
+    placeElementIconDelete.addEventListener('click', () => this._removeCard());
     elementImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
