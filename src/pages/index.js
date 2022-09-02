@@ -1,12 +1,12 @@
 import '../pages/index.css';
-import Card from '../scripts/components/Card.js';
-import FormValidator from '../scripts/components/FormValidator.js';
-import Section from '../scripts/components/Section.js';
-import UserInfo from '../scripts/components/UserInfo.js';
-import PopupWithImage from '../scripts/components/PopupWithImage.js';
-import PopupWithForm from '../scripts/components/PopupWithForm.js';
-import PopupWithDeleteCard from '../scripts/components/PopupWithDeleteCard.js';
-import Api from '../scripts/components/Api.js';
+import Card from '../scripts/components/_Card.js';
+import FormValidator from '../scripts/components/_FormValidator.js';
+import Section from '../scripts/components/_Section.js';
+import UserInfo from '../scripts/components/_UserInfo.js';
+import PopupWithImage from '../scripts/components/_PopupWithImage.js';
+import PopupWithForm from '../scripts/components/_PopupWithForm.js';
+import PopupWithDeleteCard from '../scripts/components/_PopupWithDeleteCard.js';
+import Api from '../scripts/components/_Api.js';
 import objectSettings from '../scripts/utils/object-settings.js';
 import {
   selectorContainer,
