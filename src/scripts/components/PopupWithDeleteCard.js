@@ -1,4 +1,4 @@
-import Popup from './_Popup.js';
+import Popup from './Popup.js';
 
 export default class PopupWithDeleteCard extends Popup {
   constructor(popupSelector) {
