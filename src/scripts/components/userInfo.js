@@ -10,18 +10,11 @@ export default class UserInfo {
       profession: this._profileProfession.textContent,
     };
   }
-  getUserAvatar() {
-    return this._profileAvatar.src;
-  }
-  setUserInfo(name, about) {
+  setUserInfo({ name, about, avatar, _id }) {
     this._profileName.textContent = name;
     this._profileProfession.textContent = about;
-  }
-  setUserAvatar(avatar) {
     this._profileAvatar.src = avatar;
-  }
-  setUserId(id) {
-    this._id = id;
+    this._id = _id;
   }
   getUserId() {
     return this._id;

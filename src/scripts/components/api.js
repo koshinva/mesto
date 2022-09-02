@@ -11,7 +11,7 @@ export default class Api {
     return Promise.reject(`Ошибка: ${resp.status}`);
   };
   getUserInfo = () => {
-    return fetch('https://nomoreparties.co/v1/cohort-49/users/me', {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
       return this._checkResponse(res);

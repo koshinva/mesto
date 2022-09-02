@@ -6,7 +6,7 @@ export default class Popup {
     document.addEventListener('keydown', this._handleEscClose);
     this._popup.classList.add('popup_opened');
   }
-  close = () => {
+  close() {
     this._removeEventListeners();
     this._popup.classList.remove('popup_opened');
   };
@@ -26,7 +26,7 @@ export default class Popup {
   setEventListeners() {
     this._popup
       .querySelector('.popup__close-icon')
-      .addEventListener('click', this.close);
+      .addEventListener('click', () => this.close());
     this._popup.addEventListener('click', this._closePopupOverlay);
   };
 }

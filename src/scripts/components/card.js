@@ -60,12 +60,12 @@ class Card {
     this._card = null;
   }
 
-  _setEventListener = (elementImage) => {
+  _setEventListener = () => {
     this._placeElementIconLike.addEventListener('click', this._changeLike);
     this._placeElementIconDelete.addEventListener('click', () =>
       this._removeCard()
     );
-    elementImage.addEventListener('click', () => {
+    this._placeElementImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
   };
@@ -91,15 +91,15 @@ class Card {
       '.place__button-remove'
     );
     this._placeCountLike = this._card.querySelector('.place__count-like');
-    const placeElementImage = this._card.querySelector('.place__image');
-    const placeElementName = this._card.querySelector('.place__name-city');
+    this._placeElementImage = this._card.querySelector('.place__image');
+    this._placeElementName = this._card.querySelector('.place__name-city');
     this._checkIconDelete();
     this._checkIconLike();
-    this._setEventListener(placeElementImage);
+    this._setEventListener();
     this._changeCountLike();
-    placeElementName.textContent = this._name;
-    placeElementImage.src = this._link;
-    placeElementImage.alt = this._name;
+    this._placeElementName.textContent = this._name;
+    this._placeElementImage.src = this._link;
+    this._placeElementImage.alt = this._name;
   }
 
   getCard() {

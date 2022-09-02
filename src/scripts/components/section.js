@@ -5,14 +5,6 @@ export default class Section {
   }
   renderItems(items) {
     items.reverse().forEach((item) => this._renderer(item));
-    // this._items.then((data) => {
-    //   data.reverse().forEach((item) => {
-    //     this._renderer(item);
-    //   })
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // });
   }
   addItem(element) {
     this._sectionContainer.prepend(element);
